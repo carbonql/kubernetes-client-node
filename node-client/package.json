@@ -10,7 +10,8 @@
     "*.ts",
     "*.js"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
