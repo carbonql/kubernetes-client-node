@@ -183,7 +183,7 @@ export class Config {
     public static SERVICEACCOUNT_TOKEN_PATH =
     Config.SERVICEACCOUNT_ROOT + '/token';
 
-    public static fromFile(filename: string): api.Core_v1Api {
+    public static fromFile(filename: string): api.CoreV1Api {
         let kc = new KubeConfig();
         kc.loadFromFile(filename);
 
@@ -193,7 +193,7 @@ export class Config {
         return k8sApi;
     }
 
-    public static fromCluster(): api.Core_v1Api {
+    public static fromCluster(): api.CoreV1Api {
         let host = process.env.KUBERNETES_SERVICE_HOST
         let port = process.env.KUBERNETES_SERVICE_PORT
 
@@ -212,7 +212,7 @@ export class Config {
         return k8sApi;
     }
 
-    public static defaultClient(): api.Core_v1Api {
+    public static defaultClient(): api.CoreV1Api {
         if (process.env.KUBECONFIG) {
             return Config.fromFile(process.env.KUBECONFIG);
         }

@@ -2,7 +2,7 @@ import stream = require('stream');
 
 import ws = require('websocket');
 import { KubeConfig } from './config';
-import { V1Status } from './api';
+import { IoK8sApimachineryPkgApisMetaV1Status } from './api';
 
 
 const protocols = [
@@ -48,7 +48,7 @@ export class WebSocketHandler {
                 });
                 resolve(connection);
             });
-            
+
             client.on('connectFailed', (err) => {
                 reject(err);
             });
@@ -60,11 +60,11 @@ export class WebSocketHandler {
             } else {
                 url = 'ws://' + server.substr(7) + path;
             }
-            client.connect(url, protocols);    
+            client.connect(url, protocols);
         });
     }
 
-    public static handleStandardStreams(stream: number, buff: Buffer, stdout: any, stderr: any): V1Status {
+    public static handleStandardStreams(stream: number, buff: Buffer, stdout: any, stderr: any): IoK8sApimachineryPkgApisMetaV1Status {
         if (buff.length < 1) {
             return null;
         }
@@ -80,7 +80,7 @@ export class WebSocketHandler {
             if (stderr) {
                 stderr.end();
             }
-            return JSON.parse(buff.toString('utf8')) as V1Status;
+            return JSON.parse(buff.toString('utf8')) as IoK8sApimachineryPkgApisMetaV1Status;
         } else {
             console.log("Unknown stream: " + stream);
         }
@@ -96,7 +96,7 @@ export class WebSocketHandler {
             } else {
                 buff.write(data, 1);
             }
-            conn.send(buff);        
+            conn.send(buff);
         });
 
         stdin.on('end', () => {
