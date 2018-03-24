@@ -35,15 +35,15 @@ export class KubeConfig {
 
     constructor() { }
 
-    public getContexts() {
+    public getContexts(): Context[] {
         return this.contexts;
     }
 
-    public getClusters() {
+    public getClusters(): Cluster[] {
         return this.clusters;
     }
 
-    public getUsers() {
+    public getUsers(): User[] {
         return this.users;
     }
 
@@ -56,7 +56,7 @@ export class KubeConfig {
     }
 
     // Only really public for testing...
-    public static findObject(list: Object[], name: string, key: string) {
+    public static findObject<T>(list: T[], name: string, key: string): T {
         for (let obj of list) {
             if (obj['name'] == name) {
                 if (obj[key]) {
@@ -68,27 +68,27 @@ export class KubeConfig {
         return null;
     }
 
-    private getCurrentContextObject() {
+    public getCurrentContextObject(): Context {
         return this.getContextObject(this.currentContext);
     }
 
-    public getContextObject(name: string) {
+    public getContextObject<T>(name: string): Context {
         return KubeConfig.findObject(this.contexts, name, 'context');
     }
 
-    public getCurrentCluster() {
+    public getCurrentCluster(): Cluster {
         return this.getCluster(this.getCurrentContextObject()['cluster']);
     }
 
-    public getCluster(name: string) {
+    public getCluster(name: string): Cluster {
         return KubeConfig.findObject(this.clusters, name, 'cluster');
     }
 
-    public getCurrentUser() {
+    public getCurrentUser(): User {
         return this.getUser(this.getCurrentContextObject()['user']);
     }
 
-    public getUser(name: string) {
+    public getUser(name: string): User {
         return KubeConfig.findObject(this.users, name, 'user');
     }
 
@@ -96,7 +96,7 @@ export class KubeConfig {
         this.loadFromString(fs.readFileSync(file, 'utf8'));
     }
 
-    private bufferFromFileOrString(file: string, data: string) {
+    private bufferFromFileOrString(file: string, data: string): Buffer {
         if (file) {
             return fs.readFileSync(file);
         }
