@@ -7,7 +7,7 @@ import jsonpath = require('jsonpath');
 import request = require('request');
 import shelljs = require('shelljs');
 import yaml = require('js-yaml');
-import api = require('./api');
+import * as api from './api';
 import { Cluster, newClusters, User, newUsers, Context, newContexts } from './config_types';
 
 import client = require('./auth-wrapper');

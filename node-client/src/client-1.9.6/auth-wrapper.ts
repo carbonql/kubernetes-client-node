@@ -1,4 +1,4 @@
-import api = require('./api');
+import * as api from './api';
 
 // These wrappers are needed until we update the swagger->TypeScript generator
 

@@ -2,7 +2,7 @@ import stream = require('stream');
 
 import ws = require('websocket');
 import { KubeConfig } from './config';
-import { IoK8sApimachineryPkgApisMetaV1Status } from './api';
+import { IoK8sApimachineryPkgApisMetaV1Status } from './types';
 
 
 const protocols = [
