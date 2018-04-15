@@ -1,22 +1,17 @@
 {
   "name": "@carbonql/kubernetes-client-node",
-  "version": "0.1.6",
+  "version": "{{CLIENT_VERSION}}",
   "description": "NodeJS client for kubernetes",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubernetes-client/javascript.git"
   },
   "files": [
-    "*.ts",
-    "*.js"
+    "**/*.d.ts",
+    "**/*.js"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "clean": "rm -Rf node_modules/ dist/",
-    "build": "tsc",
-    "test": "mocha -r ts-node/register src/**/*_test.ts"
-  },
+  "main": "index.js",
+  "types": "index.d.ts",
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
   "dependencies": {
